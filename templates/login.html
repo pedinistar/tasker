@@ -1,15 +1,19 @@
 {% extends "base.html" %}
-{%block style%}
-
-<style>
-  .container {
-    height: 80%;
-  }
-</style>
-
-{%endblock%}
 {% block content %}
-<div class="container d-flex justify-content-center align-items-center">
+<div class="container d-flex justify-content-center align-items-center flex-column">
+
+  <!-- Flash Messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div class="">
+    {% for category, message in messages %}
+    <div class="flash-message alert alert-{{ category }} mt-3">{{ message }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+  <!-- End Flash Messages -->
+
   <div class="card p-4 shadow-sm" style="max-width: 360px; width: 100%; overflow: hidden;">
     <h1 class="text-center mb-4" style="font-weight: bold;">Login</h1>
     <form method="POST">

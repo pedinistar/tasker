@@ -73,6 +73,7 @@ def success():
     return render_template('success.html')
 
 
+
 # LOGIN ROUTE
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -85,8 +86,9 @@ def login():
             flash('You have been logged in!', 'success')
             return redirect(url_for('dashboard'))
         else:
-            flash('Login Unsuccessful. Please check email and password', 'danger')
+            flash('Login Unsuccessful. Please check username and password', 'danger')
     return render_template('login.html', title='Login', form=form)
+
 
 
 @app.route('/dashboard', methods=['GET', 'POST'])
