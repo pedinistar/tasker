@@ -5,31 +5,43 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Noto Sans Mono", monospace;
+  /* border: 1px solid yellow; */
 }
 
 html, body{
   width: 100%;
   height: 100%;
-  background-color: #D9D9D9;
+  /* background-color: #D9D9D9; */
+  background-color: #f0f0f0;
 }
 
-.login{
+main{
+  width: 100%;
+  height: 100%;
+}
+
+
+.nav-link:hover{
+  text-decoration: underline;
+}
+
+.btn-style1{
   border-radius: 0;
   border: 1px solid black;
 }
 
-.login:hover{
+.btn-style1:hover{
   background-color: blue;
   color: white;
 }
 
-.register{
+.btn-style2{
   border-radius: 0;
-  background-color: #CCCCCC;
+  background-color: #ffffff;
 }
 
-.register:hover{
-  background-color: #949292;
+.btn-style2:hover{
+  background-color: #000000;
   color: white;
 }
 
@@ -39,34 +51,7 @@ html, body{
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
 
-.modal-header {
-  background-color: #e0f7fa; /* Soft teal background */
-  border-bottom: none; /* Remove bottom border */
-  border-radius: 15px 15px 0 0; /* Rounded top corners */
-  padding: 20px; /* Add padding */
-  text-align: center; /* Center text */
-}
 
-.modal-header h5 {
-  color: #00796b; /* Dark teal text */
-  font-weight: bold; /* Bold text */
-}
-
-.modal-body {
-  background-color: #ffffff; /* White background */
-  padding: 20px; /* Add padding */
-  font-size: 16px; /* Increase font size */
-  color: #616161; /* Soft gray text */
-  text-align: center; /* Center text */
-}
-
-.modal-footer {
-  background-color: #e0f7fa; /* Match header background */
-  border-top: none; /* Remove top border */
-  border-radius: 0 0 15px 15px; /* Rounded bottom corners */
-  padding: 10px; /* Add padding */
-  text-align: center; /* Center buttons */
-}
 
 .btn-confirm {
   background-color: #ffccbc; /* Soft peach button */
@@ -86,53 +71,110 @@ html, body{
   font-weight: bold; /* Bold text */
 }
 
-.modal-content {
-    background-color: #fefae0;
-    border-radius: 15px;
-    border: none;
-}
 
-.modal-header, .modal-footer {
-    background-color: #faedcd;
-    border-bottom: none;
-    border-top: none;
-    border-radius: 15px 15px 0 0;
-}
 
-.modal-body {
-    background-color: #fefae0;
-}
-
-.card {
+/* .card {
     background-color: #fffbf0;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+} */
 
 .text-decoration-line-through {
   text-decoration: line-through;
 }
 
 .round-checkbox {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid #6c757d; /* Dark gray border */
+  width: 25px;
+  height: 25px;
+  border-radius: 0;
+  border: 1px solid #6c757d; /* Dark gray border */
   background-color: #f8f9fa; /* Light background */
 }
 
 .round-checkbox:checked {
-  background-color: #0d6efd; /* Bootstrap primary color when checked */
-  border-color: #0d6efd;
+  background-color:blue; /* Bootstrap primary color when checked */
 }
 
-.round-checkbox:focus {
-  box-shadow: 0 0 3px #0d6efd; /* Outline when focused */
+.round-checkbox:focus, #username, #password, #confirm_password {
+  outline: none; /* Removes the default blue outline */
+  box-shadow: none; /* Removes the shadow */
+  border: 1px solid #6c757d; /* Keeps the dark gray border */
+  border-radius: 0;
 }
+
+
+
 
 /* Hide the default checkbox appearance */
 .round-checkbox {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+}
+
+* {
+  /* border: 1px solid yellow; */
+}
+
+body {
+  background-color: #f0f0f0;
+  /* background-color: red; */
+}
+
+.container .row {
+  /* background-color: black; */
+}
+
+.container {
+  height: 80%;
+  /* background-color: green; */
+}
+
+.row {
+  height: 100%;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: last baseline;
+  justify-content: center;
+}
+
+.welcome-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.description {
+  color: #6c757d;
+}
+
+
+@media (max-width: 320px) {
+  .container {
+    /* background-color: red; */
+    width: 80%;
+  }
+
+  .left{
+    margin-top: 40px;
+    align-items: center;
+  }
+
+  .welcome-text{
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .description{
+    width: 113%;
+    text-align: center;
+    font-size: 12px;
+  }
+
+  body > div > div > div.col-md-6.d-flex.align-items-center.justify-content-center > img{
+    width: 70%;
+  }
+
 }

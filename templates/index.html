@@ -1,15 +1,22 @@
 {% extends "base.html" %}
+
 {% block content %}
-<div class="d-flex vh-100 justify-content-center align-items-center">
-  <div class="px-4 py-5 text-center">
-    <img class="d-block mx-auto mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-    <h1 class="display-5 fw-bold text-body-emphasis">Tasker</h1>
-    <div class="col-lg-6 mx-auto">
-      <p class="lead mb-4">A minimal todo web app to help you stay organized.</p>
-      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <a class="login btn btn-lg px-4 gap-3" href="{{ url_for('login') }}">Login</a>
-        <a class="register btn btn-lg px-4" href="{{ url_for('register') }}">Register</a>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 left">
+      <h1 class="welcome-text mb-4">Welcome to TASKER</h1>
+      <p class="description mb-4">
+        TASKER is a powerful todo web app that helps you stay organized and
+        productive. With TASKER, you can easily <b><em>create</em></b>, <b><em>manage</em></b>, and
+        <b><em>complete</em></b> your tasks with a clean and intuitive interface.
+      </p>
+      <div>
+        <a class="btn btn-style1 me-2 rounded-0" href="{{url_for('login')}}">Get Started</a>
       </div>
+    </div>
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+      <!-- Placeholder for image or additional content -->
+      <img src="{{url_for('static', filename='images/todo-home.png')}}" alt="Todo">
     </div>
   </div>
 </div>
