@@ -21,5 +21,4 @@ class TaskForm(FlaskForm):
     description = TextAreaField('Description', validators=[DataRequired()])
     category = SelectField('Category', choices=[('Work', 'Work'), ('Personal', 'Personal')], validators=[DataRequired()])
     priority = SelectField('Priority', choices=[('Low', 'Low'), ('Medium', 'Medium'), ('High', 'High')], validators=[DataRequired()])
-    deadline = DateField('Deadline', format='%Y-%m-%d', validators=[DataRequired()])
     submit = SubmitField('Add Task')

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, redirect, url_for, jsonify
+from flask import Flask, render_template, flash, redirect, url_for, jsonify, session
 from forms import RegistrationForm, LoginForm, TaskForm
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user, login_required
@@ -33,7 +33,6 @@ class Task(db.Model):
     description = db.Column(db.Text, nullable=True)
     category = db.Column(db.String(50), nullable=False)
     priority = db.Column(db.String(50), nullable=False)
-    deadline = db.Column(db.String(50), nullable=True)
     is_completed = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
@@ -101,16 +100,17 @@ def dashboard():
             description=form.description.data,
             category=form.category.data,
             priority=form.priority.data,
-            deadline=form.deadline.data,
             owner=current_user
         )
         db.session.add(new_task)
         db.session.commit()
 
+        flash('Task has been added!', 'success')  # Add a flash message for debugging
         return redirect(url_for('dashboard'))
 
     tasks = Task.query.filter_by(user_id=current_user.id).all()
-    return render_template('dashboard.html', tasks=tasks, form=form)
+    return render_template('dashboard.html', tasks=tasks, form=form, user=current_user)
+
 
 
 @app.route('/edit_task/<int:task_id>', methods=['POST'])
@@ -124,7 +124,6 @@ def edit_task(task_id):
         task.description = form.description.data
         task.category = form.category.data
         task.priority = form.priority.data
-        task.deadline = form.deadline.data
         db.session.commit()
         return redirect(url_for('dashboard'))
 
@@ -157,8 +156,7 @@ def task_details(task_id):
             'title': task.title,
             'description': task.description,
             'category': task.category,
-            'priority': task.priority,
-            'deadline': task.deadline
+            'priority': task.priority
         })
     else:
         return jsonify({'error': 'Task not found'}), 404
@@ -184,7 +182,8 @@ def toggle_task_completion(task_id):
 @login_required
 def logout():
     logout_user()
-    flash('You have been logged out.', 'info')
+    flash('You have been logged out.', 'success')
+    session.pop('_flashes', None)  # Clears any flash messages
     return redirect(url_for('home'))
 
 
