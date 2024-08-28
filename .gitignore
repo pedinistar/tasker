@@ -1,6 +1,6 @@
+secret.py
 __pycache__/
 *.pyc
 *.pyo
 .env
 task_manager_env/
-secret.py
