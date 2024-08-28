@@ -41,38 +41,37 @@ html, body{
 }
 
 #addTaskModal .modal-content {
-  border-radius: 0; /* Removes rounded corners */
+  border-radius: 0; 
 }
 
-/* Adds margin to the bottom of the modal */
 .modal-dialog {
-  margin-bottom: 2rem; /* Adjust as needed */
+  margin-bottom: 2rem;
 }
 
 .modal-content {
-  background-color: #f8f9fa; /* Light pastel background */
-  border-radius: 15px; /* Rounded corners */
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  background-color: #f8f9fa; 
+  border-radius: 15px; 
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); 
 }
 
 
 
 .btn-confirm {
-  background-color: #ffccbc; /* Soft peach button */
-  border: none; /* Remove border */
-  border-radius: 20px; /* Rounded button */
-  padding: 10px 20px; /* Add padding */
-  color: #d84315; /* Dark peach text */
-  font-weight: bold; /* Bold text */
+  background-color: #ffccbc;
+  border: none; 
+  border-radius: 20px;
+  padding: 10px 20px; 
+  color: #d84315; 
+  font-weight: bold; 
 }
 
 .btn-cancel {
-  background-color: #c8e6c9; /* Soft green button */
-  border: none; /* Remove border */
-  border-radius: 20px; /* Rounded button */
-  padding: 10px 20px; /* Add padding */
-  color: #2e7d32; /* Dark green text */
-  font-weight: bold; /* Bold text */
+  background-color: #c8e6c9; 
+  border: none; 
+  border-radius: 20px; 
+  padding: 10px 20px; 
+  color: #2e7d32; 
+  font-weight: bold; 
 }
 
 
@@ -96,27 +95,25 @@ html, body{
   width: 25px;
   height: 25px;
   border-radius: 0;
-  border: 1px solid #6c757d; /* Dark gray border */
-  background-color: #f8f9fa; /* Light background */
+  border: 1px solid #6c757d;
+  background-color: #f8f9fa;
 }
 
 .round-checkbox:checked {
-  background-color:blue; /* Bootstrap primary color when checked */
+  background-color:blue; 
 }
 
 .round-checkbox:focus, #username, #password, #confirm_password, #title, #description, #category, #priority, #title-1, #description-1, #category-1, #priority-1 {
-  outline: none; /* Removes the default blue outline */
-  box-shadow: none; /* Removes the shadow */
-  border: 1px solid #6c757d; /* Keeps the dark gray border */
+  outline: none; 
+  box-shadow: none; 
+  border: 1px solid #6c757d;
   border-radius: 0;
 }
 
 #taskDetailsModal .modal-content, #editTaskModal-1 > div > div, #deleteConfirmationModal > div > div, #editTaskModal-3 > div > div {
-  border-radius: 0; /* Removes rounded corners */
+  border-radius: 0; 
 }
 
-
-/* Custom CSS to ensure modal is centered */
 .modal-dialog-centered {
   display: flex;
   align-items: center;
@@ -127,28 +124,16 @@ html, body{
   font-weight: 800;
 }
 
-/* Hide the default checkbox appearance */
+
 .round-checkbox {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
 
-* {
-  /* border: 1px solid yellow; */
-}
-
-body {
-  background-color: #f0f0f0;
-  /* background-color: red; */
-}
-
-.container .row {
-  /* background-color: black; */
-}
-
 .container {
   height: 80%;
+  /* background-color: green; */
 }
 
 .row {
@@ -175,7 +160,6 @@ body {
   background-color: transparent;
   border: none;
   padding: 8px;
-  /* border-radius: 4px; */
   transition: background-color 0.3s, box-shadow 0.3s;
   display: flex;
   align-items: center;
@@ -184,12 +168,12 @@ body {
 }
 
 .delete-button:hover {
-  background-color: #f8d7da; /* Light red background */
-  box-shadow: 0 0 0 2px #f5c6cb; /* Border effect with contrasting color */
+  background-color: #f8d7da;
+  box-shadow: 0 0 0 2px #f5c6cb; 
 }
 
 .delete-button:active {
-  background-color: #f5c6cb; /* Slightly darker on click */
+  background-color: #f5c6cb; 
   box-shadow: 0 0 0 2px #f1b0b7;
 }
 
@@ -203,34 +187,32 @@ body {
   box-shadow: 0 0 0 2px #80deea;
 }
 
-
-/* Hover state with green shade */
 .eye-button:hover {
-  background-color: #e8f5e9; /* Light green background */
-  box-shadow: 0 0 0 2px #c8e6c9; /* Lighter green shadow */
+  background-color: #e8f5e9; 
+  box-shadow: 0 0 0 2px #c8e6c9;
 }
 
-/* Active state with green shade */
+
 .eye-button:active {
-  background-color: #c8e6c9; /* Slightly darker green background */
-  box-shadow: 0 0 0 2px #a5d6a7; /* Even darker green shadow */
+  background-color: #c8e6c9; 
+  box-shadow: 0 0 0 2px #a5d6a7; 
 }
 
 
 
 .dash-header {
-  margin-bottom: 20px; /* Adjust the margin as needed */
+  margin-bottom: 20px; 
 }
 
 .task-container {
-  max-height: calc(100vh - 250px); /* Adjust this calculation based on your header and footer size */
+  max-height: calc(100vh - 250px); 
   overflow-y: auto;
-  padding-bottom: 20px; /* Space below the last task */
-  margin-bottom: 20px; /* Space below the tasks-container */
+  padding-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .task-container .card:last-child {
-  margin-bottom: 20px; /* Ensure margin below the last task */
+  margin-bottom: 20px; 
 }
 
 
@@ -277,10 +259,6 @@ body {
     min-height: 0.5rem;
     padding-left: 0.5em;
     margin-bottom: 0; 
-  }
-
-  .task-buttons{
-
   }
 
 }
