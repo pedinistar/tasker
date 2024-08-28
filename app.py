@@ -4,6 +4,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 from secret import SECRET_KEY, SQLALCHEMY_DATABASE_URI
+from models import User, Task
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
@@ -15,30 +16,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
 
-class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(150), unique=True, nullable=False)
-    password = db.Column(db.String(150), nullable=False)
-    # `tasks = db.relationship('Task', backref='owner', lazy=True)` creates a link to all tasks of a person,
-    # labels each task with the owner, and only fetches tasks when needed.
-    tasks = db.relationship('Task', backref='owner', lazy=True)
-
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
-
-
-class Task(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(150), nullable=False)
-    description = db.Column(db.Text, nullable=True)
-    category = db.Column(db.String(50), nullable=False)
-    priority = db.Column(db.String(50), nullable=False)
-    is_completed = db.Column(db.Boolean, default=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-
-
-# Ensure the User Loader is Defined
+# User Loader
 @login_manager.user_loader
 def load_user(user_id):
     return db.session.get(User, int(user_id))
@@ -66,12 +44,12 @@ def register():
         flash('Your account has been created! You are now able to log in', 'success')
         return redirect(url_for('success'))
 
-    return render_template('register.html', title='Register', form=form)
+    return render_template('register.html', form=form)
+
 
 @app.route('/success')
 def success():
     return render_template('success.html')
-
 
 
 # LOGIN ROUTE
@@ -83,11 +61,12 @@ def login():
 
         if user and check_password_hash(user.password, form.password.data):
             login_user(user)
+
             flash('You have been logged in!', 'success')
             return redirect(url_for('dashboard'))
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
-    return render_template('login.html', title='Login', form=form)
+    return render_template('login.html', form=form)
 
 
 
@@ -135,14 +114,9 @@ def edit_task(task_id):
 @login_required
 def delete_task(task_id):
     task = Task.query.get_or_404(task_id)
-
-    # Ensure that the task belongs to the current user
-    if task.owner != current_user:
-        flash('You are not authorized to delete this task.', 'danger')
-        return redirect(url_for('dashboard'))
-
     db.session.delete(task)
     db.session.commit()
+    
     flash('Task has been deleted!', 'success')
     return redirect(url_for('dashboard'))
 
@@ -167,11 +141,6 @@ def task_details(task_id):
 @login_required
 def toggle_task_completion(task_id):
     task = Task.query.get_or_404(task_id)
-    
-    # Ensure that the task belongs to the current user
-    if task.owner != current_user:
-        return jsonify({'success': False, 'message': 'Not authorized'})
-
     task.is_completed = not task.is_completed
     db.session.commit()
     
@@ -191,4 +160,4 @@ def logout():
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run()

@@ -63,3 +63,4 @@ document.addEventListener('DOMContentLoaded', function () {
     window.showTaskDetails = showTaskDetails;
     window.toggleTaskCompletion = toggleTaskCompletion;
 });
+
