@@ -221,7 +221,10 @@ html, body{
   color: blue;
 }
 
-
+footer{
+  margin-top: 38px;
+  font-size: 15px;
+}
 
 @media (max-width: 320px) {
   .container {

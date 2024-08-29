@@ -3,11 +3,11 @@ from forms import RegistrationForm, LoginForm, TaskForm
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required, UserMixin
 from flask_sqlalchemy import SQLAlchemy
-import os
+from secret import SECRET_KEY, SQLALCHEMY_DATABASE_URI
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("SQLALCHEMY_DATABASE_URI")
+app.config['SECRET_KEY'] = SECRET_KEY
+app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 
 db = SQLAlchemy(app)
 
