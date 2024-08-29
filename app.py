@@ -1,20 +1,23 @@
-from flask import Flask, render_template, flash, redirect, url_for, jsonify, session, request
+from flask import Flask, render_template, flash, redirect, url_for, jsonify, session
 from forms import RegistrationForm, LoginForm, TaskForm
 from werkzeug.security import check_password_hash, generate_password_hash
-from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user, login_required
+from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from flask_sqlalchemy import SQLAlchemy
-from secret import SECRET_KEY, SQLALCHEMY_DATABASE_URI
-from models import User, Task
+import os
+from extensions import db
+
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = SECRET_KEY
-app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("SQLALCHEMY_DATABASE_URI")
 
 db = SQLAlchemy(app)
 
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
+
+from models import User, Task
 
 # User Loader
 @login_manager.user_loader
