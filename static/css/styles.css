@@ -215,6 +215,9 @@ html, body{
   margin-bottom: 20px; 
 }
 
+.navbar-brand h1{
+  cursor: none;
+}
 
 .dash-header h2 span{
   font-weight: 900;
