@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, redirect, url_for, session
+from flask import Flask, render_template, flash, redirect, url_for, session, jsonify
 from forms import RegistrationForm, LoginForm, TaskForm
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required, UserMixin
@@ -91,7 +91,7 @@ def dashboard():
         flash('Task has been added!', 'success')
         return redirect(url_for('dashboard'))
     tasks = Task.query.filter_by(user_id=current_user.id).all()
-    return render_template('dashboard.html', tasks=tasks, form=form)
+    return render_template('dashboard.html', tasks=tasks, form=form, user=current_user)
 
 @app.route('/edit_task/<int:task_id>', methods=['POST'])
 @login_required
