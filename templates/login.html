@@ -5,7 +5,7 @@
   <!-- Flash Messages -->
   {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
-  <div class="">
+  <div class="alert-container">
     {% for category, message in messages %}
     <div class="flash-message alert alert-{{ category }} mt-3">{{ message }}</div>
     {% endfor %}
@@ -29,7 +29,7 @@
         {{ form.submit(class="btn btn-light w-100 btn-style1") }}
       </div>
     </form>
-    <p class="text-center mt-4">Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+    <p class="text-center mt-4">Don't have an a ccount? <a href="{{ url_for('register') }}">Register</a></p>
   </div>
 </div>
 {% endblock %}
