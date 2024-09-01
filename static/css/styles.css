@@ -225,10 +225,13 @@ html, body{
 }
 
 footer{
+  border-top: 1px solid black;
   position: absolute;
   width: 100%;
   bottom: 0;
   font-size: 15px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 body > footer > div > p:nth-child(2) > a{
