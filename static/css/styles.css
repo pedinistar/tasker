@@ -225,8 +225,16 @@ html, body{
 }
 
 footer{
-  margin-top: 38px;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
   font-size: 15px;
+  background-color: red;
+}
+
+body > footer > div > p:nth-child(2) > a{
+  text-decoration: none;
+  font-weight: 500;
 }
 
 @media (max-width: 320px) {
