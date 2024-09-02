@@ -37,8 +37,7 @@
                 </div>
                 <div class="task-buttons d-flex align-items-center">
                     <!-- Details Button -->
-                    <button class="btn eye-button me-2 btn-style1"
-                        onclick="showTaskDetails({{ task.id }}); event.stopPropagation();">
+                    <button class="btn eye-button me-2 btn-style1" onclick="showTaskDetails({{ task.id }});">
                         <img src="{{ url_for('static', filename='images/eye.svg') }}" alt="Details Icon" width="20"
                             height="20">
                     </button>
