@@ -34,8 +34,6 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150), nullable=False)
     description = db.Column(db.Text, nullable=True)
-    category = db.Column(db.String(50), nullable=False)
-    priority = db.Column(db.String(50), nullable=False)
     is_completed = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
@@ -84,8 +82,6 @@ def dashboard():
         new_task = Task(
             title=form.title.data,
             description=form.description.data,
-            category=form.category.data,
-            priority=form.priority.data,
             owner=current_user
         )
         db.session.add(new_task)
@@ -103,8 +99,6 @@ def edit_task(task_id):
     if form.validate_on_submit():
         task.title = form.title.data
         task.description = form.description.data
-        task.category = form.category.data
-        task.priority = form.priority.data
         db.session.commit()
         return redirect(url_for('dashboard'))
     return redirect(url_for('dashboard'))
@@ -126,8 +120,6 @@ def task_details(task_id):
         return jsonify({
             'title': task.title,
             'description': task.description,
-            'category': task.category,
-            'priority': task.priority
         })
     return jsonify({'error': 'Task not found'}), 404
 

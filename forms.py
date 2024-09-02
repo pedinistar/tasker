@@ -19,6 +19,4 @@ class LoginForm(FlaskForm):
 class TaskForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     description = TextAreaField('Description', validators=[DataRequired()])
-    category = SelectField('Category', choices=[('Work', 'Work'), ('Personal', 'Personal')], validators=[DataRequired()])
-    priority = SelectField('Priority', choices=[('Low', 'Low'), ('Medium', 'Medium'), ('High', 'High')], validators=[DataRequired()])
     submit = SubmitField('Add Task')

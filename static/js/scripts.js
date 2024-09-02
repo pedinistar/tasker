@@ -30,8 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else {
                     document.getElementById('taskTitle').innerText = data.title;
                     document.getElementById('taskDescription').innerText = data.description;
-                    document.getElementById('taskCategory').innerText = data.category;
-                    document.getElementById('taskPriority').innerText = data.priority;
 
                     // Show the modal
                     const taskDetailsModal = new bootstrap.Modal(document.getElementById('taskDetailsModal'));

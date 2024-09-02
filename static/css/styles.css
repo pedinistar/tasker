@@ -103,7 +103,7 @@ html, body{
   background-color:blue; 
 }
 
-.round-checkbox:focus, #username, #password, #confirm_password, #title, #description, #category, #priority, #title-1, #description-1, #category-1, #priority-1 {
+.round-checkbox:focus, #username, #password, #confirm_password, #title, #description, #title-1, #description-1 {
   outline: none; 
   box-shadow: none; 
   border: 1px solid #6c757d;
