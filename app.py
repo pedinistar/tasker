@@ -7,7 +7,6 @@ from flask_minify import Minify
 import os
 from dotenv import load_dotenv
 
-# Load environment variables
 load_dotenv()
 
 app = Flask(__name__)

@@ -1,7 +1,3 @@
-// import { inject } from '@vercel/analytics';
- 
-// inject();
-
 document.addEventListener('DOMContentLoaded', function () {
     let deleteForm = null;
     const deleteModal = new bootstrap.Modal(document.getElementById('deleteConfirmationModal'));
