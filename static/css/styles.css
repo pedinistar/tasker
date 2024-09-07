@@ -276,6 +276,8 @@ body > footer > div > p:nth-child(2) > a{
     padding-left: 0.5em;
     margin-bottom: 0; 
   }
+
+
 }
 
 @media (max-width: 425px) {
@@ -288,4 +290,8 @@ padding-left: 30px;
 body > div > div > div.col-md-6.left > p{
 font-size: 14px;
 }
+
+#tasks-container{
+    max-height: calc(100vh - 350px);
+  }
 }
