@@ -19,6 +19,7 @@ db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
+
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), unique=True, nullable=False)
@@ -29,6 +30,7 @@ class User(db.Model, UserMixin):
         self.username = username
         self.password = password
 
+
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150), nullable=False)
@@ -36,14 +38,17 @@ class Task(db.Model):
     is_completed = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
 
 @app.route('/')
 @app.route('/home')
 def home():
     return render_template('index.html')
+
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -57,9 +62,11 @@ def register():
         return redirect(url_for('success'))
     return render_template('register.html', form=form)
 
+
 @app.route('/success')
 def success():
     return render_template('success.html')
+
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -72,6 +79,7 @@ def login():
             return redirect(url_for('dashboard'))
         flash('Login Unsuccessful. Please check username and password', 'danger')
     return render_template('login.html', form=form)
+
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
@@ -90,6 +98,7 @@ def dashboard():
     tasks = Task.query.filter_by(user_id=current_user.id).all()
     return render_template('dashboard.html', tasks=tasks, form=form, user=current_user)
 
+
 @app.route('/edit_task/<int:task_id>', methods=['POST'])
 @login_required
 def edit_task(task_id):
@@ -102,6 +111,7 @@ def edit_task(task_id):
         return redirect(url_for('dashboard'))
     return redirect(url_for('dashboard'))
 
+
 @app.route('/delete_task/<int:task_id>', methods=['POST'])
 @login_required
 def delete_task(task_id):
@@ -110,6 +120,7 @@ def delete_task(task_id):
     db.session.commit()
     flash('Task has been deleted!', 'success')
     return redirect(url_for('dashboard'))
+
 
 @app.route('/task-details/<int:task_id>', methods=['GET'])
 @login_required
@@ -122,6 +133,7 @@ def task_details(task_id):
         })
     return jsonify({'error': 'Task not found'}), 404
 
+
 @app.route('/toggle-task-completion/<int:task_id>', methods=['POST'])
 @login_required
 def toggle_task_completion(task_id):
@@ -130,6 +142,7 @@ def toggle_task_completion(task_id):
     db.session.commit()
     return jsonify({'success': True})
 
+
 @app.route('/logout', methods=['POST'])
 @login_required
 def logout():
@@ -137,6 +150,7 @@ def logout():
     flash('You have been logged out.', 'success')
     session.pop('_flashes', None)
     return redirect(url_for('home'))
+
 
 if __name__ == "__main__":
     with app.app_context():
